@@ -44,6 +44,28 @@ public class TestController {
         return userService.login("test123","123456");
     }
 
+    @GetMapping("/register")
+    public boolean register(){
+        User user = new User();
+        user.setUserName("test456");
+        user.setPassWord("123456");
+        user.setNickName("傻白甜");
+        user.setRealName("王五");
+        user.setEmail("wangwu@163.com");
+        user.setTelePhone("13111111112");
+        user.setRemark("热爱学习，热爱编程");
+        return userService.register(user);
+    }
+
+    @GetMapping("/updateUser")
+    public boolean updateUser() {
+        User user = new User();
+        user.setId(1);
+        user.setRemark("小明下午修改了信息");
+
+        return userService.updateUser(user);
+    }
+
 
     @GetMapping("/team/{id}")
     public TeamVo getTeam(@PathVariable("id") int id) {
@@ -88,22 +110,25 @@ public class TestController {
     }
     @GetMapping("/addLiterature")
     public boolean addLiterature(){
-//        Literature literature = new Literature();
-//        literature.setName("大数据审美");
-//        literature.setAuthor("大明");
-//        literature.setPath("～～～～");
-//        literature.setTime(System.currentTimeMillis());
-//        literature.setYear("2015");
-//        literature.setRemarks("如何以审美的眼光去看待大数据～～～");
-//        List<KeyWord> list = new ArrayList<>();
-//        KeyWord keyWord = new KeyWord();
-//        keyWord.setId(1);
-//        KeyWord keyWord1 = new KeyWord();
-//        keyWord1.setId(3);
-//        list.add(keyWord);
-//        list.add(keyWord1);
-//        literatureService.inputLiterature(literature,list,1);
-       return  literatureService.getLiteratureByNameAndResearchId("大数据审美",1);
+        Literature literature = new Literature();
+        literature.setName("Spring Cloud");
+        literature.setAuthor("Spring团队");
+        literature.setPath("～～～～");
+        literature.setTime(System.currentTimeMillis());
+        literature.setYear("2015");
+        literature.setRemarks("spring自带的微服务框架～～～～");
+        List<KeyWord> list = new ArrayList<>();
+        KeyWord keyWord = new KeyWord();
+        keyWord.setId(4);
+        KeyWord keyWord1 = new KeyWord();
+        keyWord1.setName("Spring");
+        KeyWord keyWord2 = new KeyWord();
+        keyWord2.setName("微服务");
+        list.add(keyWord);
+        list.add(keyWord1);
+        list.add(keyWord2);
+      return   literatureService.inputLiterature(literature,list,1);
+      // return  literatureService.getLiteratureByNameAndResearchId("大数据审美",1);
     }
     @GetMapping("/addNotes")
     public void addNotest(){
