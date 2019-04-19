@@ -30,7 +30,11 @@ public class TestController {
     @Reference
     private NotestService notestService;
 
-    @Reference CommentService commentService;
+    @Reference
+    private  CommentService commentService;
+
+    @Reference
+    private  KeyWordService keyWordService;
 
     @GetMapping("/test/{name}")
     public User getPeople(@PathVariable("name") String name) {
@@ -156,6 +160,12 @@ public class TestController {
     public List<CommentVo> getCommentByNotesId(@PathVariable("notesId")int notesId){
 
         return commentService.getMyComment(notesId);
+    }
+
+    @GetMapping("/getByName")
+    public List<KeyWord> getByName(){
+        String name = "大数据";
+        return keyWordService.findByName("");
     }
 
 }
